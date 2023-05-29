@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>樂透遊戲</title>
+    </head>
+    <body>
+        <h1>請輸入三個數字</h1>
+        <div>
+              
+            <label>數字一</label>
+            <input id="guess1" type="number" placeholder="1~10" value=""/>
+            <br>
+            <label>數字二</label>
+            <input id="guess2" type="number" placeholder="1~10" value=""/>
+            <br>
+            <label>數字三</label>
+            <input id="guess3" type="number" placeholder="1~10" value=""/>
+            <br>
+            <button onclick="startgame()">開獎</button>
+            <button onclick="restart()">再玩一次</button>
+            
+            
+            
+            <p id="output"></p>
+        </div>
+
+        <script>
+            // (1)
+            var luckynum1 = Math.floor(Math.random()*10)+1;
+            var luckynum2 = Math.floor(Math.random()*10)+1;
+            var luckynum3 = Math.floor(Math.random()*10)+1;
+            var guessright = 0;
+            var input1 = document.getElementById("guess1").value;
+            var input2 = document.getElementById("guess2").value;
+            var input3 = document.getElementById("guess3").value;
+            var text;
+
+
+            function startgame() {
+             
+                // 決定輸入數字是否符合規定及猜對字數
+                if (input1 != input2 && input1 != input3 && input2 != input3 && input1 <= 10 && input2 <= 10 && input3 <= 10){
+                    if (input1 == luckynum1){
+                        guessright = guessright + 1;
+                    }
+                    if (input1 == luckynum2){
+                        guessright = guessright + 1;
+                    }
+                    if (input1 == luckynum3){
+                        guessright = guessright + 1;
+                    }
+                    if (input2 == luckynum1){
+                        guessright = guessright + 1;
+                    }
+                    if (input2 == luckynum2){
+                        guessright = guessright + 1;
+                    }
+                    if (input2 == luckynum3){
+                        guessright = guessright + 1;
+                    }
+                    if (input3 == luckynum1){
+                        guessright = guessright + 1;
+                    }
+                    if (input3 == luckynum2){
+                        guessright = guessright + 1;
+                    }
+                    if (input3 == luckynum3){
+                        guessright = guessright + 1;
+                    }
+                }
+                else{
+                    alert('輸入錯誤，數字超出範圍或有重複數');
+                    restart();
+                }
+                // (2)
+                if (guessright == 0){
+                    text = "QQ 猜錯了";
+                }
+                else if (guessright == 1){
+                    text = "參獎，得到50塊";
+                }
+                else if (guessright == 2){
+                    text = "貳獎，得到100塊";
+                }
+                else if (guessright == 3){
+                    text = "頭獎，得到1000塊";
+                }
+                            
+                document.getElementById("output").innerHTML = text;
+            }
+
+            function restart(){
+                input1.value = "";
+                input2.value = "";
+                input3.value = "";
+                guessright = 0;
+                var luckynum1 = Math.floor(Math.random()*10)+1;
+                var luckynum2 = Math.floor(Math.random()*10)+1;
+                var luckynum3 = Math.floor(Math.random()*10)+1;  
+                document.getElementById("output").innerHTML = text;       
+            }
+        </script>
+    </body>
+</html>
